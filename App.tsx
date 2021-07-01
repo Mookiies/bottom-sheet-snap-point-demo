@@ -8,17 +8,21 @@ const App = () => {
 
 
   // variables
-  const snapPoints = useMemo(() => ['20%', '100%'], []);
+  const snapPoints = useMemo(() => ["0%", '100%'], []);
 
   const [snapPointIndex, setSnapPointIndex] = useState(0);
   const toggleSheet = () => {
-    console.log('toggleSheet')
-    setSnapPointIndex(snapPointIndex === 0 ? 1 : 0);
+    const otherSnapPoint = snapPointIndex === 0 ? 1 : 0;
+    // console.warn('toggleSheet from: ', snapPointIndex, "to: ", otherSnapPoint)
+    setSnapPointIndex(otherSnapPoint);
   }
 
   // callbacks
   const handleSheetChanges = useCallback((index: number) => {
     console.warn('handleSheetChanges', index, snapPointIndex);
+    if (index === 0) {
+      setSnapPointIndex(index);
+    }
   }, [snapPointIndex]);
 
   bottomSheetRef.current?.snapTo(snapPointIndex);
