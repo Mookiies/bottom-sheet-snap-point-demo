@@ -1,5 +1,5 @@
 import React, {useCallback, useMemo, useRef, useState} from 'react';
-import {View, Text, StyleSheet, Button, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import BottomSheet from '@gorhom/bottom-sheet';
 
 const App = () => {
@@ -8,7 +8,7 @@ const App = () => {
 
 
   // variables
-  const snapPoints = useMemo(() => ['20%', '70%'], []);
+  const snapPoints = useMemo(() => ['20%', '100%'], []);
 
   const [snapPointIndex, setSnapPointIndex] = useState(0);
   const toggleSheet = () => {
@@ -18,7 +18,7 @@ const App = () => {
 
   // callbacks
   const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index, snapPointIndex);
+    console.warn('handleSheetChanges', index, snapPointIndex);
   }, [snapPointIndex]);
 
   bottomSheetRef.current?.snapTo(snapPointIndex);
@@ -31,7 +31,7 @@ const App = () => {
         style={styles.button}
         onPress={toggleSheet}
       >
-        <Text>Press Here</Text>
+        <Text>Toggle Sheet</Text>
       </TouchableOpacity>
       <BottomSheet
         ref={bottomSheetRef}
@@ -43,6 +43,12 @@ const App = () => {
         <View style={styles.contentContainer}>
           <Text>Awesome 🎉</Text>
           <Text>{snapPointIndex === 0 ? "closed" : "open"}</Text>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={toggleSheet}
+          >
+            <Text>Toggle Sheet</Text>
+          </TouchableOpacity>
         </View>
       </BottomSheet>
     </View>
