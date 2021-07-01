@@ -1,6 +1,6 @@
 import React, {useCallback, useMemo, useRef, useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import BottomSheet from '@gorhom/bottom-sheet';
+import BottomSheet, { TouchableHighlight } from '@gorhom/bottom-sheet';
 
 const App = () => {
   // ref
@@ -13,7 +13,7 @@ const App = () => {
   const [snapPointIndex, setSnapPointIndex] = useState(0);
   const toggleSheet = () => {
     const otherSnapPoint = snapPointIndex === 0 ? 1 : 0;
-    // console.warn('toggleSheet from: ', snapPointIndex, "to: ", otherSnapPoint)
+    console.warn('toggleSheet from: ', snapPointIndex, "to: ", otherSnapPoint)
     setSnapPointIndex(otherSnapPoint);
   }
 
@@ -31,12 +31,12 @@ const App = () => {
   return (
     <View style={styles.container}>
 
-      <TouchableOpacity
+      <TouchableHighlight
         style={styles.button}
         onPress={toggleSheet}
       >
         <Text>Toggle Sheet</Text>
-      </TouchableOpacity>
+      </TouchableHighlight>
       <BottomSheet
         ref={bottomSheetRef}
         index={snapPointIndex}
@@ -47,12 +47,12 @@ const App = () => {
         <View style={styles.contentContainer}>
           <Text>Awesome 🎉</Text>
           <Text>{snapPointIndex === 0 ? "closed" : "open"}</Text>
-          <TouchableOpacity
+          <TouchableHighlight
             style={styles.button}
             onPress={toggleSheet}
           >
             <Text>Toggle Sheet</Text>
-          </TouchableOpacity>
+          </TouchableHighlight>
         </View>
       </BottomSheet>
     </View>
