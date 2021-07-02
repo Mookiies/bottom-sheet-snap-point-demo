@@ -19,7 +19,12 @@ const App = () => {
 
   // callbacks
   const handleSheetChanges = useCallback((index: number) => {
-    console.warn('handleSheetChanges', index, snapPointIndex);
+    console.warn('handleSheetChanges', index);
+    // This check is necessary because this callback is not reliable. Steps:
+    // Device rotated with sheet open
+    // Then sheet closed (callback no fired)
+    // Then device rotated
+    // After rotation callback is then fired (with the wrong index)
     if (index === 0) {
       setSnapPointIndex(index);
     }
