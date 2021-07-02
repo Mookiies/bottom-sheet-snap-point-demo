@@ -13,7 +13,7 @@ const App = () => {
   const [snapPointIndex, setSnapPointIndex] = useState(0);
   const toggleSheet = () => {
     const otherSnapPoint = snapPointIndex === 0 ? 1 : 0;
-    console.warn('toggleSheet from: ', snapPointIndex, "to: ", otherSnapPoint)
+    // console.warn('toggleSheet from: ', snapPointIndex, "to: ", otherSnapPoint)
     setSnapPointIndex(otherSnapPoint);
   }
 
